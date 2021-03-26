@@ -111,7 +111,7 @@ const NotificationManager = window.ReactNotifications.NotificationManager;
 | Name | Type | Description |
 |------|------|-------------|
 | message | string | The message string |
-| html | string | An added HTML message  |
+| html | string | An added HTML message(does not sanitize)  |
 | title | string | The title string |
 | timeOut | integer | The popup timeout in milliseconds |
 | callback | function | A function that gets fired when the popup is clicked |
