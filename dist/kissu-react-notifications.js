@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["react", "prop-types", "react-transition-group"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactNotifications"] = factory(require("react"), require("prop-types"), require("react-transition-group"));
+		exports["KissuReactNotifications"] = factory(require("react"), require("prop-types"), require("react-transition-group"));
 	else
-		root["ReactNotifications"] = factory(root["React"], root["PropTypes"], root["ReactTransitionGroup"]);
+		root["KissuReactNotifications"] = factory(root["React"], root["PropTypes"], root["ReactTransitionGroup"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -749,6 +749,12 @@ var Notification_Notification = /*#__PURE__*/function (_React$Component) {
       _this.requestHide();
     });
 
+    _defineProperty(_assertThisInitialized(_this), "negateClickCallback", function (e) {
+      e.stopPropagation();
+
+      _this.requestHide();
+    });
+
     _defineProperty(_assertThisInitialized(_this), "requestHide", function () {
       var onRequestHide = _this.props.onRequestHide;
 
@@ -765,21 +771,34 @@ var Notification_Notification = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           type = _this$props.type,
-          message = _this$props.message;
-      var title = this.props.title;
+          html = _this$props.html;
+      var _this$props2 = this.props,
+          title = _this$props2.title,
+          message = _this$props2.message;
+      var dangerousHtml = {
+        __html: html
+      };
       var className = classnames_default()(['notification', "notification-".concat(type)]);
       title = title ? /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement("h4", {
         className: "title"
       }, title) : null;
+      message = message ? /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement("div", {
+        className: "message"
+      }, message) : null;
+      var dangerousHtmlElement = html ? /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement("div", {
+        className: "message raw",
+        dangerouslySetInnerHTML: dangerousHtml
+      }) : null;
       return /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement("div", {
         className: className,
         onClick: this.handleClick
       }, /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement("div", {
         className: "notification-message",
         role: "alert"
-      }, title, /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement("div", {
-        className: "message"
-      }, message)));
+      }, title, message, dangerousHtmlElement), /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement("div", {
+        className: "notification-closer",
+        onClick: this.negateClickCallback
+      }));
     }
   }]);
 
@@ -790,6 +809,7 @@ _defineProperty(Notification_Notification, "propTypes", {
   type: external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_default.a.oneOf(['info', 'success', 'warning', 'error']),
   title: external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_default.a.node,
   message: external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_default.a.node,
+  html: external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_default.a.node,
   timeOut: external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_default.a.number,
   onClick: external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_default.a.func,
   onRequestHide: external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_default.a.func
@@ -799,6 +819,7 @@ _defineProperty(Notification_Notification, "defaultProps", {
   type: 'info',
   title: null,
   message: null,
+  html: null,
   timeOut: 5000,
   onClick: function onClick() {},
   onRequestHide: function onRequestHide() {}
@@ -891,6 +912,7 @@ var Notifications_Notifications = /*#__PURE__*/function (_React$Component) {
           type: notification.type,
           title: notification.title,
           message: notification.message,
+          html: notification.html,
           timeOut: notification.timeOut,
           onClick: notification.onClick,
           onRequestHide: _this2.handleRequestHide(notification)
@@ -988,6 +1010,7 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
         type: 'info',
         title: null,
         message: null,
+        html: null,
         timeOut: 5000
       };
 
@@ -1001,10 +1024,11 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
     }
   }, {
     key: "info",
-    value: function info(message, title, timeOut, onClick, priority) {
+    value: function info(message, title, timeOut, onClick, priority, html) {
       this.create({
         type: Constants.INFO,
         message: message,
+        html: html,
         title: title,
         timeOut: timeOut,
         onClick: onClick,
@@ -1013,10 +1037,11 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
     }
   }, {
     key: "success",
-    value: function success(message, title, timeOut, onClick, priority) {
+    value: function success(message, title, timeOut, onClick, priority, html) {
       this.create({
         type: Constants.SUCCESS,
         message: message,
+        html: html,
         title: title,
         timeOut: timeOut,
         onClick: onClick,
@@ -1025,10 +1050,11 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
     }
   }, {
     key: "warning",
-    value: function warning(message, title, timeOut, onClick, priority) {
+    value: function warning(message, title, timeOut, onClick, priority, html) {
       this.create({
         type: Constants.WARNING,
         message: message,
+        html: html,
         title: title,
         timeOut: timeOut,
         onClick: onClick,
@@ -1037,10 +1063,11 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
     }
   }, {
     key: "error",
-    value: function error(message, title, timeOut, onClick, priority) {
+    value: function error(message, title, timeOut, onClick, priority, html) {
       this.create({
         type: Constants.ERROR,
         message: message,
+        html: html,
         title: title,
         timeOut: timeOut,
         onClick: onClick,

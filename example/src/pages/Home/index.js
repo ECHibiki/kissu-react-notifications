@@ -1,6 +1,6 @@
 import React from 'react';
 import Document from '../../components/Document';
-import { NotificationContainer, NotificationManager } from '../../../../dist/react-notifications';
+import { NotificationContainer, NotificationManager } from '../../../../dist/kissu-react-notifications';
 
 class HomePage extends React.Component {
   createNotification = (type) => () => {
@@ -18,6 +18,11 @@ class HomePage extends React.Component {
         NotificationManager.error('Error message', 'Click me!', 5000, () => {
           alert('callback');
         });
+        break;
+      case 'html':
+        NotificationManager.info('', 'HTML', 5000, () => {
+          alert('callback');
+        }, true, "Take me to <a href='https://google.com'>Google</a>");
         break;
       default:
         break;
@@ -46,8 +51,11 @@ class HomePage extends React.Component {
           <button type="button" className="btn btn-danger" onClick={this.createNotification('error')}>
             Error
           </button>
-
-          <NotificationContainer/>
+          <hr/>
+          <button type="button" className="btn btn-info" onClick={this.createNotification('html')}>
+            HTML
+          </button>
+          <NotificationContainer leaveTimeout={0} enterTimeout={300}/>
         </div>
       </Document>
     );

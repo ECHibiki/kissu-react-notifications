@@ -16,9 +16,11 @@
   position: fixed;
   top: $react-notifications-container-top;
   right: $react-notifications-container-right;
+  left: $react-notifications-container-left;
   z-index: $react-notifications-container-z-index;
   width: $react-notifications-container-width;
   padding: $react-notifications-container-top-padding $react-notifications-container-right-padding;
+  margin: $react-notifications-container-top-margin $react-notifications-container-right-margin;
   max-height: $react-notifications-container-max-height;
   overflow-x: hidden;
   overflow-y: auto;
@@ -26,11 +28,12 @@
 
 .notification {
   box-sizing: border-box;
+  max-height: $react-notifications-max-height;
   padding: $react-notifications-padding-top $react-notifications-padding-right $react-notifications-padding-bottom $react-notifications-padding-left;
   border-radius: $react-notifications-border-radius;
+  border-bottom: $react-notifications-border-bottom;
   color: $react-notifications-color;
   background-color: $react-notifications-background-color;
-  box-shadow: $react-notifications-box-shadow;
   cursor: $react-notifications-cursor;
   font-size: $react-notifications-font-size;
   line-height: $react-notifications-line-height;
@@ -43,8 +46,35 @@
     font-weight: $react-notifications-title-font-weight;
     margin: $react-notifications-title-margin;
   }
+  display:flex;
   &:hover, &:focus {
     opacity: $react-notifications-hover-opacity;
+  }
+}
+
+.notification-closer {
+
+}
+.notification-closer{
+  background: #ffffff59;
+  border-radius: 11px;
+  height: 21px;
+  width: 21px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 17px;
+  &:after{
+    content: "\D7";
+    position: relative;
+    font-size: 28px;
+    height: 0px;
+    display: block;
+    bottom: 3px;
+    left: 2px;
+  }
+  &:hover{
+    background:#ffffffa3;
   }
 }
 
@@ -112,4 +142,14 @@
   &:before {
     content: $react-notifications-error-content;
   }
+}
+.message.raw > a {
+  &:hover{
+    color:#e5edff;
+  }
+  color: #c0d1f9;
+  text-decoration: underline;
+}
+.notification-message {
+  width: 100%;
 }

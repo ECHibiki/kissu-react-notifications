@@ -1,6 +1,6 @@
 import React from 'react';
 import Document from '../../components/Document';
-import { NotificationContainer, NotificationManager } from '../../../../dist/react-notifications';
+import { NotificationContainer, NotificationManager } from '../../../../dist/kissu-react-notifications';
 
 import './notifications.scss';
 
@@ -20,6 +20,11 @@ class TransitionAnimationPage extends React.Component {
         NotificationManager.error('Error message', 'Click me!', 5000, () => {
           alert('callback');
         });
+        break;
+      case 'html':
+        NotificationManager.info('', 'HTML', 5000, () => {
+          alert('callback');
+        }, true, "<a href='https://google.com'>Take me to Google</a>");
         break;
       default:
         break;
@@ -50,6 +55,10 @@ class TransitionAnimationPage extends React.Component {
           <hr/>
           <button type="button" className="btn btn-danger" onClick={this.createNotification('error')}>
             Error
+          </button>
+          <hr/>
+          <button type="button" className="btn btn-info" onClick={this.createNotification('html')}>
+            HTML
           </button>
 
           <NotificationContainer enterTimeout={800} leaveTimeout={500}/>

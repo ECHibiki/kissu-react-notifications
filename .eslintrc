@@ -19,10 +19,11 @@
     "react/static-property-placement": ["off"],
     "react/state-in-constructor": ["off"],
     "react/destructuring-assignment": ["off"],
+    "react/no-danger": "off",
     "jsx-a11y/click-events-have-key-events": ["off"],
     "jsx-a11y/no-static-element-interactions": "off",
     "no-alert": "off",
-    "no-bitwise": "off"
+    "no-bitwise": "off",
   },
   "globals": {
     "jQuery": false,

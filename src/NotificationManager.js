@@ -29,6 +29,7 @@ class NotificationManager extends EventEmitter {
       type: 'info',
       title: null,
       message: null,
+      html: null,
       timeOut: 5000
     };
     if (notify.priority) {
@@ -39,10 +40,11 @@ class NotificationManager extends EventEmitter {
     this.emitChange();
   }
 
-  info(message, title, timeOut, onClick, priority) {
+  info(message, title, timeOut, onClick, priority, html) {
     this.create({
       type: Constants.INFO,
       message,
+      html,
       title,
       timeOut,
       onClick,
@@ -50,10 +52,11 @@ class NotificationManager extends EventEmitter {
     });
   }
 
-  success(message, title, timeOut, onClick, priority) {
+  success(message, title, timeOut, onClick, priority, html) {
     this.create({
       type: Constants.SUCCESS,
       message,
+      html,
       title,
       timeOut,
       onClick,
@@ -61,10 +64,11 @@ class NotificationManager extends EventEmitter {
     });
   }
 
-  warning(message, title, timeOut, onClick, priority) {
+  warning(message, title, timeOut, onClick, priority, html) {
     this.create({
       type: Constants.WARNING,
       message,
+      html,
       title,
       timeOut,
       onClick,
@@ -72,10 +76,11 @@ class NotificationManager extends EventEmitter {
     });
   }
 
-  error(message, title, timeOut, onClick, priority) {
+  error(message, title, timeOut, onClick, priority, html) {
     this.create({
       type: Constants.ERROR,
       message,
+      html,
       title,
       timeOut,
       onClick,

@@ -7,6 +7,7 @@ class Notification extends React.Component {
     type: PropTypes.oneOf(['info', 'success', 'warning', 'error']),
     title: PropTypes.node,
     message: PropTypes.node,
+    html: PropTypes.node,
     timeOut: PropTypes.number,
     onClick: PropTypes.func,
     onRequestHide: PropTypes.func
@@ -16,6 +17,7 @@ class Notification extends React.Component {
     type: 'info',
     title: null,
     message: null,
+    html: null,
     timeOut: 5000,
     onClick: () => {
     },
@@ -44,6 +46,11 @@ class Notification extends React.Component {
     this.requestHide();
   };
 
+  negateClickCallback = (e) => {
+    e.stopPropagation();
+    this.requestHide();
+  }
+
   requestHide = () => {
     const { onRequestHide } = this.props;
     if (onRequestHide) {
@@ -52,16 +59,21 @@ class Notification extends React.Component {
   };
 
   render() {
-    const { type, message } = this.props;
-    let { title } = this.props;
+    const { type, html } = this.props;
+    let { title, message } = this.props;
+    const dangerousHtml = { __html: html };
     const className = classnames(['notification', `notification-${type}`]);
     title = title ? (<h4 className="title">{title}</h4>) : null;
+    message = message ? (<div className="message">{message}</div>) : null;
+    const dangerousHtmlElement = html ? (<div className="message raw" dangerouslySetInnerHTML={dangerousHtml} />) : null;
     return (
       <div className={className} onClick={this.handleClick}>
         <div className="notification-message" role="alert">
           {title}
-          <div className="message">{message}</div>
+          {message}
+          {dangerousHtmlElement}
         </div>
+        <div className="notification-closer" onClick={this.negateClickCallback}/>
       </div>
     );
   }
