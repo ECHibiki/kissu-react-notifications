@@ -1,6 +1,6 @@
 {
   "name": "kissu-react-notifications",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "Kissu Fork. Notification component for ReactJS",
   "main": "lib/index.js",
   "scripts": {

@@ -5,7 +5,7 @@
 ## Installation
 
 ```
-npm install --save react-notifications
+npm install --save kissu-react-notifications
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ npm install --save react-notifications
 
 #### Webpack:
 ```js
-import 'react-notifications/lib/notifications.css';
+import 'kissu-react-notifications/lib/notifications.css';
 ```
 
 #### Other
@@ -30,7 +30,7 @@ import 'react-notifications/lib/notifications.css';
 
 ```js
 import React from 'react';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import {NotificationContainer, NotificationManager} from 'kissu-react-notifications';
 
 class Example extends React.Component {
   createNotification = (type) => {
@@ -85,8 +85,8 @@ export default Example;
 ### UMD
 
 ```html
-<link rel="stylesheet" type="text/css" href="path/to/react-notifications/dist/react-notifications.css">
-<script src="path/to/react-notifications/dist/react-notifications.js"></script>
+<link rel="stylesheet" type="text/css" href="path/to/kissu-react-notifications/dist/kissu-react-notifications.css">
+<script src="path/to/kissu-react-notifications/dist/kissu-react-notifications.js"></script>
 ```
 
 ```js
