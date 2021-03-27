@@ -25,6 +25,12 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
+@media (max-width:500px){
+  .notification-container {
+    width: 100%;
+    margin: 0;
+  }
+}
 
 .notification {
   box-sizing: border-box;
@@ -70,7 +76,7 @@
     font-size: 28px;
     height: 0px;
     display: block;
-    top: 2px;
+    bottom: 0px;
     left: 2px;
   }
   &:hover{

@@ -14,12 +14,19 @@
   right: 0;
   left: 0;
   z-index: 999999;
-  width: calc(100% - 30px);
+  width: calc(100% - 200px);
   padding: 0 0;
-  margin: 0 15px;
+  margin: 0 100px;
   max-height: 120px;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+@media (max-width: 500px) {
+  .notification-container {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 .notification {
@@ -31,8 +38,8 @@
   color: #fff;
   background-color: #ccc;
   cursor: pointer;
-  font-size: 1em;
-  line-height: 1.2em;
+  font-size: 0.85em;
+  line-height: 0.8em;
   position: relative;
   opacity: 0.9;
   margin-top: 0;
@@ -67,7 +74,7 @@
   font-size: 28px;
   height: 0px;
   display: block;
-  bottom: 3px;
+  bottom: 0px;
   left: 2px;
 }
 
@@ -106,7 +113,7 @@
   font-family: 'Notification';
   width: 28px;
   height: 28px;
-  font-size: 28px;
+  font-size: 22px;
   text-align: center;
   line-height: 28px;
 }
